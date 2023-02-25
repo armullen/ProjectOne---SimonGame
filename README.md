@@ -14,4 +14,6 @@ As a user the important features to an enjoyable game play of Simon are,
 3. correctly timed and easy to see pattern of changing button colors
 4. clear written and easy to understand instructions
 
-***Wireframe photo markup created in an open issue connected with my github repository.
+
+
+***Wireframe photo added
