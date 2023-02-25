@@ -4,10 +4,16 @@ header{
 }
 body{
     background-color: black;
-    color: whitesmoke
+    color: whitesmoke;
+    text-align: center;
 }
 .gameboard{
     display: flex;
+}
+#startBtn{
+    background-color: gainsboro;
+    width: 10vh;
+    height: 5vh;  
 }
 
 #yellow{
