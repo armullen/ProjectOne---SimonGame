@@ -13,3 +13,5 @@ As a user the important features to an enjoyable game play of Simon are,
 2. a way to see what my longest score is to always be chasing my record
 3. correctly timed and easy to see pattern of changing button colors
 4. clear written and easy to understand instructions
+
+***Wireframe photo markup created in an open issue connected with my github repository.
