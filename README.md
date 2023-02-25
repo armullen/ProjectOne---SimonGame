@@ -17,3 +17,4 @@ As a user the important features to an enjoyable game play of Simon are,
 
 
 ***Wireframe photo added
+![Untitled_Artwork](https://user-images.githubusercontent.com/121705867/221380249-f3564e8a-c3ef-482e-a115-790be411e0c7.jpg)
