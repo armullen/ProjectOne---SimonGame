@@ -36,3 +36,6 @@ body{
     width: 40vh;
     height: 20vh;
 }
+.selectedBtn{
+    background-color: azure;
+}
