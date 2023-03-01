@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,20 +9,26 @@
     <link rel="stylesheet" href="./style.css">
     <script src="app.js" defer></script>
 </head>
+
 <body>
-    <div class = 'gameTitle'>
+    <div class='gameTitle'>
         <header>Simon Game</header>
         <h1>Instructions</h1>
-        <p>How good is your memory?  Test your skills against Simon and try to beat your high score! Simon will change the color of the boxes in a fast paced game of repeat after me and will ask you to repeat the patterns in order and advance to harder levels. </p>
+        <p>How good is your memory? Test your skills against Simon and try to beat your high score! Simon will change
+            the color of the boxes in a fast paced game of repeat after me and will ask you to repeat the patterns in
+            order and advance to harder levels. </p>
     </div>
-    <div class = 'gameBoard'>
-        <button class = 'gameBtn' id = 'startBtn'>Start</button><br></br>
-        <button class = 'gameBtn' id = 'yellow'></button>
-        <button class = 'gameBtn' id = 'red'></button> <br></br>
-        <button class = 'gameBtn' id= 'blue'></button>
-        <button class = 'gameBtn' id = 'green'></button>
-        <h2 id = 'longestStreak'>Longest streak: </h2>
+    <div class='gameBoard'>
+        <button id='startBtn'>Start</button><br></br>
+        <section id='gameBtn'>
+            <button class = 'yellow'></button>
+            <button class = 'red'></button> <br></br>
+            <button class = 'blue'></button>
+            <button class = 'green'></button>
+        </section>
+        <h2 id='longestStreak'>Longest streak: </h2>
     </div>
-    
+
 </body>
+
 </html>

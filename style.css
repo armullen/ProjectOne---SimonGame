@@ -16,26 +16,26 @@ body{
     height: 5vh;  
 }
 
-#yellow{
+.yellow{
     background-color: gold;
     width: 40vh;
     height: 20vh;
 }
-#blue{
+.blue{
     background-color: blue;
     width: 40vh;
     height: 20vh;
 }
-#green{
+.green{
     background-color: green;
     width: 40vh;
     height: 20vh;
 }
-#red{
+.red{
     background-color: red;
     width: 40vh;
     height: 20vh;
 }
-.selectedBtn{
-    background-color: azure;
+.flash{
+    background-color: white;
 }
