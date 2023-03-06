@@ -7,7 +7,6 @@ const greenBtn = document.querySelector('.green');
 const yellowBtn = document.querySelector('.yellow');
 const startBtn = document.querySelector('#start');
 let streakCounter = document.querySelector('#longestStreak');
-let gameStart = true;
 
 
 //console.log(colorArr); expect array to print
@@ -39,26 +38,37 @@ blueBtn.addEventListener('click', colorSignalBlue);
 
 const buttonArr = [redBtn, blueBtn, greenBtn, yellowBtn];
 
-function gameSequence() {
-    for (let i = 0; i < buttonArr.length; i++) {
-        if (buttonArr[i] === redBtn) {
-                colorSignalRed();
-            }
-            if (buttonArr[i] === blueBtn){
-                    colorSignalBlue();
-                }
-            }
-            return buttonArr[Math.floor(Math.random() * buttonArr.length)]
-}
-console.log(gameSequence()); //expect random colored buttons to flash one at a time when they are called.
 
-//push each random button into an empty array
+function gameSequence() {
+    let gameArr = buttonArr[Math.floor(Math.random() * buttonArr.length)];
+    if (gameArr === redBtn) {
+        colorSignalRed();
+    } else if (gameArr === blueBtn) {
+        colorSignalBlue();
+    } else if (gameArr === yellowBtn) {
+        colorSignalYellow();
+    } else if (gameArr === greenBtn) {
+        colorSignalGreen();
+    }
+    
+}
+setTimeout(() => {gameSequence()}, (500));
+//console.log(gameSequence()); //expect random colored buttons to flash one at a time when they are called.
+
+console.log(gameSequence())
+console.log(gameSequence())
+console.log(gameSequence())
+console.log(gameSequence())
+
+//push each random button into an empty array one at a time waiting in between each for the user to click on the correct button
 
 //compare the users clicks to the growing array with a while loop?
 
-//use promise to either move on and add new buttons up to twenty moves when the correct sequence is clicked, or reject when they push a wrong button
+//use promise to either move on and add new button sequence up to twenty moves when the correct sequence is clicked, or reject when they push a wrong button
 
-//empty array and start over when the start button is clicked at the end or beginning of the game
+//empty the array and start over when the start button is clicked at the end or beginning of the game
+
+//create a function to count longest streak of colors gotten correct by user
 
 
 
