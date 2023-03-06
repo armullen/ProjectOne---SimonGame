@@ -37,10 +37,11 @@ blueBtn.addEventListener('click', colorSignalBlue);
 //function to randomly select colors and blink to show user sequence
 
 const buttonArr = [redBtn, blueBtn, greenBtn, yellowBtn];
-
+setInterval(gameSequence, 1000);
 
 function gameSequence() {
     let gameArr = buttonArr[Math.floor(Math.random() * buttonArr.length)];
+    
     if (gameArr === redBtn) {
         colorSignalRed();
     } else if (gameArr === blueBtn) {
@@ -52,7 +53,7 @@ function gameSequence() {
     }
     
 }
-setTimeout(() => {gameSequence()}, (500));
+
 //console.log(gameSequence()); //expect random colored buttons to flash one at a time when they are called.
 
 console.log(gameSequence())
