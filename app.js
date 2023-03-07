@@ -18,19 +18,39 @@ let gameStart = true;
 
 function colorSignalRed() {
     redBtn.classList.add('flash')
-    setTimeout(() => { redBtn.classList.remove('flash') }, (250));
+    return new Promise(resolve => {
+        setTimeout(() => { 
+            redBtn.classList.remove('flash');
+            resolve('Done');
+        }, 250);
+    })
 }
 function colorSignalGreen() {
     greenBtn.classList.add('flash')
-    setTimeout(() => { greenBtn.classList.remove('flash') }, (250));
+    return new Promise(resolve => {
+        setTimeout(() => { 
+            greenBtn.classList.remove('flash');
+            resolve('Done');
+        }, 250);
+    })
 }
 function colorSignalYellow() {
     yellowBtn.classList.add('flash')
-    setTimeout(() => { yellowBtn.classList.remove('flash') }, (250));
+    return new Promise(resolve => {
+        setTimeout(() => { 
+            yellowBtn.classList.remove('flash');
+            resolve('Done');
+        }, 250);
+    })
 }
 function colorSignalBlue() {
     blueBtn.classList.add('flash')
-    setTimeout(() => { blueBtn.classList.remove('flash') }, (250));
+    return new Promise(resolve => {
+        setTimeout(() => { 
+            blueBtn.classList.remove('flash');
+            resolve('Done');
+        }, 250);
+    })
 };
 redBtn.addEventListener('click', colorSignalRed);
 greenBtn.addEventListener('click', colorSignalGreen);
@@ -50,23 +70,17 @@ function randomColorSelector() {
     console.log(selectBtn);
     console.log(gameArr);
 }
-function resolveAfter2Seconds() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve('resolved');
-      }, 2000);
-    });
-  }
+
 async function showGameArr() {
     for (let i = 0; i < gameArr.length; i++) {
         if (gameArr[i] === redBtn) {
-            colorSignalRed();
+           await colorSignalRed();
         } else if (gameArr[i] === blueBtn) {
-            colorSignalBlue();
+            await colorSignalBlue();
         } else if (gameArr[i] === yellowBtn) {
-            colorSignalYellow();
+            await colorSignalYellow();
         } else if (gameArr[i] === greenBtn) {
-            colorSignalGreen();
+            await colorSignalGreen();
         }
        //setTimeout(250)
     }
