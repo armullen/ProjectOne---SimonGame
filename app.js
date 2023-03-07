@@ -21,7 +21,9 @@ function colorSignalRed() {
     return new Promise(resolve => {
         setTimeout(() => { 
             redBtn.classList.remove('flash');
-            resolve('Done');
+            setTimeout(() => {
+                resolve();
+            },250);
         }, 250);
     })
 }
@@ -30,7 +32,9 @@ function colorSignalGreen() {
     return new Promise(resolve => {
         setTimeout(() => { 
             greenBtn.classList.remove('flash');
-            resolve('Done');
+            setTimeout(() => {
+                resolve();
+            },250);
         }, 250);
     })
 }
@@ -39,7 +43,9 @@ function colorSignalYellow() {
     return new Promise(resolve => {
         setTimeout(() => { 
             yellowBtn.classList.remove('flash');
-            resolve('Done');
+            setTimeout(() => {
+                resolve();
+            },250);
         }, 250);
     })
 }
@@ -48,7 +54,9 @@ function colorSignalBlue() {
     return new Promise(resolve => {
         setTimeout(() => { 
             blueBtn.classList.remove('flash');
-            resolve('Done');
+            setTimeout(() => {
+                resolve();
+            },250);
         }, 250);
     })
 };
@@ -82,7 +90,6 @@ async function showGameArr() {
         } else if (gameArr[i] === greenBtn) {
             await colorSignalGreen();
         }
-       //setTimeout(250)
     }
 }
 
@@ -96,7 +103,7 @@ async function showGameArr() {
        
 
 
-//push each random button into an empty array one at a time waiting in between each for the user to click on the correct button
+//start button, array, user click, compare, second array push or reject
 
 //compare the users clicks to the growing array with a while loop?
 
