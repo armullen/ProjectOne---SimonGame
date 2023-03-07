@@ -1,16 +1,20 @@
 
-//grab all the elements of my game that I will be working with.
-
+//DOM constants
 const redBtn = document.querySelector('.red');
 const blueBtn = document.querySelector('.blue');
 const greenBtn = document.querySelector('.green');
 const yellowBtn = document.querySelector('.yellow');
-const startBtn = document.querySelector('#start');
-let streakCounter = document.querySelector('#longestStreak');
+const startBtn = document.querySelector('#startBtn');
+const streakCounter = document.querySelector('#longestStreak');
+const messageBox = document.querySelector('#messageBox');
 
+const buttonArr = [redBtn, blueBtn, greenBtn, yellowBtn];
 
-//console.log(colorArr); expect array to print
-//function that changes the color of the boxes to white for a second when the box is clicked by the user or called on by the computer
+//global variables
+let gameArr = [];
+let playerTurn = true;
+let gameStart = true;
+
 
 function colorSignalRed() {
     redBtn.classList.add('flash')
@@ -33,33 +37,50 @@ greenBtn.addEventListener('click', colorSignalGreen);
 yellowBtn.addEventListener('click', colorSignalYellow);
 blueBtn.addEventListener('click', colorSignalBlue);
 
+startBtn.addEventListener('click', handleStartClick);
 
-//function to randomly select colors and blink to show user sequence
 
-const buttonArr = [redBtn, blueBtn, greenBtn, yellowBtn];
-setInterval(gameSequence, 1000);
-
-function gameSequence() {
-    let gameArr = buttonArr[Math.floor(Math.random() * buttonArr.length)];
-    
-    if (gameArr === redBtn) {
-        colorSignalRed();
-    } else if (gameArr === blueBtn) {
-        colorSignalBlue();
-    } else if (gameArr === yellowBtn) {
-        colorSignalYellow();
-    } else if (gameArr === greenBtn) {
-        colorSignalGreen();
+function handleStartClick(){
+    randomColorSelector();
+    showGameArr();
+}
+function randomColorSelector() {
+    let selectBtn = buttonArr[Math.floor(Math.random() * buttonArr.length)];
+    gameArr.push(selectBtn);
+    console.log(selectBtn);
+    console.log(gameArr);
+}
+function resolveAfter2Seconds() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve('resolved');
+      }, 2000);
+    });
+  }
+async function showGameArr() {
+    for (let i = 0; i < gameArr.length; i++) {
+        if (gameArr[i] === redBtn) {
+            colorSignalRed();
+        } else if (gameArr[i] === blueBtn) {
+            colorSignalBlue();
+        } else if (gameArr[i] === yellowBtn) {
+            colorSignalYellow();
+        } else if (gameArr[i] === greenBtn) {
+            colorSignalGreen();
+        }
+       //setTimeout(250)
     }
-    
 }
 
-//console.log(gameSequence()); //expect random colored buttons to flash one at a time when they are called.
+// while () {
+//         if (computerTurn) {
+//                 showGameArr();
+//                 randomColorSelector();
+//             }
+//             playerTurn
+//         }
+       
 
-console.log(gameSequence())
-console.log(gameSequence())
-console.log(gameSequence())
-console.log(gameSequence())
 
 //push each random button into an empty array one at a time waiting in between each for the user to click on the correct button
 

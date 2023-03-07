@@ -9,6 +9,8 @@ body{
 }
 .gameboard{
     display: flex;
+    flex-wrap: wrap;
+    
 }
 #startBtn{
     background-color: gainsboro;
@@ -38,4 +40,21 @@ body{
 }
 .flash{
     background-color: white;
+}
+#messageBox{
+    background-color: gainsboro;
+    color: black;
+    height: 10vh;
+    width: 40vh;
+}
+#longestStreak{
+    background-color: gainsboro;
+    color: black;
+    height: 10vh;
+    width: 40vh;
+}
+.messageCenter{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
