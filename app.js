@@ -109,38 +109,23 @@ function updatePlayerArr(){
         console.log(playerArr)
     };
 
-function roundCounter(){
-    
-}
-        
-           
-
-
-
 while (gameStart) {
-            playerTurn = true;
-        if (playersArr[i] === GameArr[i]) {
-                randomColorSelector();
-            }else{
-            console.log('Game Over!')
-             !gameOn
-}}
-          if(gameStart && !playerTurn){
-         randomColorSelector();
-         showGameArr();
-
-         console.log(playerTurn);
+    for(let i = 0; i < gameArr.length; i ++){
+    for(let j = 0; j < playerArr.length; j++){
+        if(gameArr[i] === playerArr[j]){
+            console.log(true);
+            playerArr = [];
+            playerTurn = false;
+            randomColorSelector();
+        }else{
+            console.log('Game Over!');
+            gameStart = false;
+            playerArr = [];
+        }
+    }
+    }
 }
-   
 
-
-//start button, array, user click, compare, second array push or reject
-
-//compare the users clicks to the growing array with a while loop?
-
-//use promise to either move on and add new button sequence up to twenty moves when the correct sequence is clicked, or reject when they push a wrong button
-
-//empty the array and start over when the start button is clicked at the end or beginning of the game
 
 //create a function to count longest streak of colors gotten correct by user
 
