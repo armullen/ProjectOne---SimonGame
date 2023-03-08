@@ -12,8 +12,9 @@ const buttonArr = [redBtn, blueBtn, greenBtn, yellowBtn];
 
 //global variables
 let gameArr = [];
-let playerTurn = true;
-let gameStart = true;
+let playerArr = [];
+let playerTurn = false;
+let gameStart = false;
 
 
 function colorSignalRed() {
@@ -60,10 +61,19 @@ function colorSignalBlue() {
         }, 250);
     })
 };
-redBtn.addEventListener('click', colorSignalRed);
-greenBtn.addEventListener('click', colorSignalGreen);
-yellowBtn.addEventListener('click', colorSignalYellow);
-blueBtn.addEventListener('click', colorSignalBlue);
+
+
+redBtn.addEventListener('click', colorSignalRed );
+greenBtn.addEventListener('click', colorSignalGreen );
+yellowBtn.addEventListener('click', colorSignalYellow );
+blueBtn.addEventListener('click', colorSignalBlue );
+
+
+redBtn.addEventListener('click', updatePlayerArr );
+greenBtn.addEventListener('click', updatePlayerArr );
+yellowBtn.addEventListener('click', updatePlayerArr );
+blueBtn.addEventListener('click', updatePlayerArr );
+
 
 startBtn.addEventListener('click', handleStartClick);
 
@@ -71,11 +81,11 @@ startBtn.addEventListener('click', handleStartClick);
 function handleStartClick(){
     randomColorSelector();
     showGameArr();
+    gameStart = true;
 }
 function randomColorSelector() {
     let selectBtn = buttonArr[Math.floor(Math.random() * buttonArr.length)];
     gameArr.push(selectBtn);
-    console.log(selectBtn);
     console.log(gameArr);
 }
 
@@ -93,14 +103,35 @@ async function showGameArr() {
     }
 }
 
-// while () {
-//         if (computerTurn) {
-//                 showGameArr();
-//                 randomColorSelector();
-//             }
-//             playerTurn
-//         }
-       
+
+function updatePlayerArr(){
+        playerArr.push(this);
+        console.log(playerArr)
+    };
+
+function roundCounter(){
+    
+}
+        
+           
+
+
+
+while (gameStart) {
+            playerTurn = true;
+        if (playersArr[i] === GameArr[i]) {
+                randomColorSelector();
+            }else{
+            console.log('Game Over!')
+             !gameOn
+}}
+          if(gameStart && !playerTurn){
+         randomColorSelector();
+         showGameArr();
+
+         console.log(playerTurn);
+}
+   
 
 
 //start button, array, user click, compare, second array push or reject
