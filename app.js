@@ -5,7 +5,6 @@ const blueBtn = document.querySelector('.blue');
 const greenBtn = document.querySelector('.green');
 const yellowBtn = document.querySelector('.yellow');
 const startBtn = document.querySelector('#startBtn');
-const streakCounter = document.querySelector('#longestStreak');
 const messageBox = document.querySelector('#messageBox');
 
 const buttonArr = [redBtn, blueBtn, greenBtn, yellowBtn];
@@ -20,6 +19,7 @@ redBtn.disabled = true;
 greenBtn.disabled = true;
 blueBtn.disabled = true;
 yellowBtn.disabled = true;
+
 messageBox.innerHTML = 'Press start to play!'
 
 
@@ -75,10 +75,10 @@ yellowBtn.addEventListener('click', colorSignalYellow);
 blueBtn.addEventListener('click', colorSignalBlue);
 
 
-redBtn.addEventListener('click', updatePlayerArr);
-greenBtn.addEventListener('click', updatePlayerArr);
-yellowBtn.addEventListener('click', updatePlayerArr);
-blueBtn.addEventListener('click', updatePlayerArr);
+redBtn.addEventListener('click', playerTurn);
+greenBtn.addEventListener('click', playerTurn);
+yellowBtn.addEventListener('click', playerTurn);
+blueBtn.addEventListener('click', playerTurn);
 
 
 startBtn.addEventListener('click', handleStartRound);
@@ -103,7 +103,6 @@ function roundCounter() {
 }
 
 function randomColorSelector() {
-    computerTurn = true;
     let selectBtn = buttonArr[Math.floor(Math.random() * buttonArr.length)];
     gameArr.push(selectBtn);
     roundCounter();
@@ -145,7 +144,7 @@ function enableButtons() {
     }
 }
 
-function updatePlayerArr() {
+function playerTurn() {
     playerArr.push(this);
     console.log('Player Array = ', playerArr);
     checkAnswer();
@@ -173,13 +172,13 @@ function checkAnswer() {
         for (let i = 0; i < playerArr.length; i++) {
             if (gameArr[i] === playerArr[i]) {
                 console.log('Matched');
-                handleStartRound();
             } else {
                 if (gameArr[i] !== playerArr[i]) {
                     gameOver();
                 }
             }
         }
+        handleStartRound();
         playerArr = [];
     }
 }
