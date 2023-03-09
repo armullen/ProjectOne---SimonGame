@@ -13,7 +13,6 @@ const buttonArr = [redBtn, blueBtn, greenBtn, yellowBtn];
 //global variables
 let gameArr = [];
 let playerArr = [];
-let playerTurn = false;
 let gameStart = false;
 let computerTurn = true;
 let round = 0;
@@ -89,7 +88,7 @@ function handleStartClick() {
 
 }
 
-function roundCounter(){
+function roundCounter() {
     round++;
     messageBox.innerHTML = `Round: ${round}`;
     console.log(round);
@@ -104,6 +103,9 @@ function randomColorSelector() {
 }
 
 async function showGameArr() {
+    await new Promise(resolve => {
+        setTimeout(() => resolve(), 1000);
+        })
     for (let i = 0; i < gameArr.length; i++) {
         if (gameArr[i] === redBtn) {
             await colorSignalRed();
@@ -116,42 +118,45 @@ async function showGameArr() {
         }
     }
 }
-function disableButtons(){
-    redBtn.disable = true;
-    greenBtn.disable = true;
-    blueBtn.disable = true;
-    yellowBtn.disable = true;
+function disableButtons() {
+    if (!gameStart) {
+        document.querySelector('.red').disabled = true;
+        greenBtn.disabled = true;
+        blueBtn.disabled = true;
+        yellowBtn.disabled = true;
+    }
 }
 
-function updatePlayerArr(){
+function updatePlayerArr() {
     playerArr.push(this);
     console.log(playerArr)
     checkAnswer();
 };
 
-    function checkAnswer (){
-        if( playerArr.length === round){
+function checkAnswer() {
+    if (playerArr.length === round) {
         for (let i = 0; i < playerArr.length; i++) {
             if (gameArr[i] === playerArr[i]) {
                 console.log('true');
-                playerArr.length = 0;
-                playerTurn = false;
-                disableButtons();
-                randomColorSelector();
-                showGameArr();
-            }else if (gameArr[i] !== playerArr[i]){
+            } else if (gameArr[i] !== playerArr[i]) {
                 console.log('Game Over!');
                 gameStart = false;
                 playerArr.length = 0;
                 gameArr.length = 0;
                 round = 0;
                 messageBox.innerHTML = ' ';
-                disableButtons();
+                //disableButtons();
+            }
         }
+        playerArr = [];
+        computerTurn = true;
+        //disableButtons();
+        randomColorSelector();
+        showGameArr();
+    } else {
+        setTimeout(console.log('waiting for user'), 500);
     }
-        }else{
-            setTimeout(console.log('waiting for user'), 500);
-    }}
+}
 
 console.log(playerArr.length);
 console.log(round);
