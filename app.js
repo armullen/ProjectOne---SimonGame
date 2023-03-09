@@ -15,84 +15,95 @@ let gameArr = [];
 let playerArr = [];
 let playerTurn = false;
 let gameStart = false;
+let computerTurn = true;
+let round = 0;
 
 
 function colorSignalRed() {
     redBtn.classList.add('flash')
     return new Promise(resolve => {
-        setTimeout(() => { 
+        setTimeout(() => {
             redBtn.classList.remove('flash');
             setTimeout(() => {
                 resolve();
-            },250);
+            }, 250);
         }, 250);
     })
 }
 function colorSignalGreen() {
     greenBtn.classList.add('flash')
     return new Promise(resolve => {
-        setTimeout(() => { 
+        setTimeout(() => {
             greenBtn.classList.remove('flash');
             setTimeout(() => {
                 resolve();
-            },250);
+            }, 250);
         }, 250);
     })
 }
 function colorSignalYellow() {
     yellowBtn.classList.add('flash')
     return new Promise(resolve => {
-        setTimeout(() => { 
+        setTimeout(() => {
             yellowBtn.classList.remove('flash');
             setTimeout(() => {
                 resolve();
-            },250);
+            }, 250);
         }, 250);
     })
 }
 function colorSignalBlue() {
     blueBtn.classList.add('flash')
     return new Promise(resolve => {
-        setTimeout(() => { 
+        setTimeout(() => {
             blueBtn.classList.remove('flash');
             setTimeout(() => {
                 resolve();
-            },250);
+            }, 250);
         }, 250);
     })
 };
 
 
-redBtn.addEventListener('click', colorSignalRed );
-greenBtn.addEventListener('click', colorSignalGreen );
-yellowBtn.addEventListener('click', colorSignalYellow );
-blueBtn.addEventListener('click', colorSignalBlue );
+redBtn.addEventListener('click', colorSignalRed);
+greenBtn.addEventListener('click', colorSignalGreen);
+yellowBtn.addEventListener('click', colorSignalYellow);
+blueBtn.addEventListener('click', colorSignalBlue);
 
 
-redBtn.addEventListener('click', updatePlayerArr );
-greenBtn.addEventListener('click', updatePlayerArr );
-yellowBtn.addEventListener('click', updatePlayerArr );
-blueBtn.addEventListener('click', updatePlayerArr );
+redBtn.addEventListener('click', updatePlayerArr);
+greenBtn.addEventListener('click', updatePlayerArr);
+yellowBtn.addEventListener('click', updatePlayerArr);
+blueBtn.addEventListener('click', updatePlayerArr);
 
 
 startBtn.addEventListener('click', handleStartClick);
 
 
-function handleStartClick(){
+function handleStartClick() {
     randomColorSelector();
     showGameArr();
     gameStart = true;
+    computerTurn = true;
 }
+
+function roundCounter(){
+    round++;
+    console.log(round);
+}
+
 function randomColorSelector() {
+    computerTurn = true;
     let selectBtn = buttonArr[Math.floor(Math.random() * buttonArr.length)];
     gameArr.push(selectBtn);
+    roundCounter();
     console.log(gameArr);
 }
 
 async function showGameArr() {
     for (let i = 0; i < gameArr.length; i++) {
         if (gameArr[i] === redBtn) {
-           await colorSignalRed();
+            await colorSignalRed();
         } else if (gameArr[i] === blueBtn) {
             await colorSignalBlue();
         } else if (gameArr[i] === yellowBtn) {
@@ -103,30 +114,35 @@ async function showGameArr() {
     }
 }
 
-
 function updatePlayerArr(){
-        playerArr.push(this);
-        console.log(playerArr)
-    };
+    playerArr.push(this);
+    console.log(playerArr)
+    checkAnswer();
+};
 
-while (gameStart) {
-    for(let i = 0; i < gameArr.length; i ++){
-    for(let j = 0; j < playerArr.length; j++){
-        if(gameArr[i] === playerArr[j]){
-            console.log(true);
-            playerArr = [];
-            playerTurn = false;
-            randomColorSelector();
-        }else{
-            console.log('Game Over!');
-            gameStart = false;
-            playerArr = [];
+    function checkAnswer (){
+        if( playerArr.length === round){
+        for (let i = 0; i < playerArr.length; i++) {
+            if (gameArr[i] === playerArr[i]) {
+                console.log('true');
+                playerArr.length = 0;
+                playerTurn = false;
+                randomColorSelector();
+                setTimeout(showGameArr(), 2000);
+            } else {
+                console.log('Game Over!');
+                gameStart = false;
+                playerArr.length = 0;
+                gameArr.length = 0;
         }
     }
-    }
-}
+        }else{
+            setTimeout(console.log('waiting for user'), 500);
+    }}
 
-
+console.log(playerArr.length);
+console.log(round);
+//round counter - wait until array matches number of round
 //create a function to count longest streak of colors gotten correct by user
 
 
