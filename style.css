@@ -43,18 +43,9 @@ body{
 }
 #messageBox{
     background-color: gainsboro;
+    margin: auto;
     color: black;
     height: 10vh;
-    width: 40vh;
+    width: 80vh;
 }
-#longestStreak{
-    background-color: gainsboro;
-    color: black;
-    height: 10vh;
-    width: 40vh;
-}
-.messageCenter{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
+

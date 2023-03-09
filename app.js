@@ -16,6 +16,11 @@ let playerArr = [];
 let gameStart = false;
 let computerTurn = true;
 let round = 0;
+redBtn.disabled = true;
+greenBtn.disabled = true;
+blueBtn.disabled = true;
+yellowBtn.disabled = true;
+messageBox.innerHTML = 'Press start to play!'
 
 
 function colorSignalRed() {
@@ -76,22 +81,25 @@ yellowBtn.addEventListener('click', updatePlayerArr);
 blueBtn.addEventListener('click', updatePlayerArr);
 
 
-startBtn.addEventListener('click', handleStartClick);
+startBtn.addEventListener('click', handleStartRound);
 
 
-function handleStartClick() {
+function handleStartRound() {
     randomColorSelector();
     showGameArr();
     gameStart = true;
     computerTurn = true;
-    //round = 0;
-
+    enableButtons();
 }
 
 function roundCounter() {
-    round++;
-    messageBox.innerHTML = `Round: ${round}`;
-    console.log(round);
+    if (round === 10) {
+        gameOver();
+    } else {
+        round++;
+        messageBox.innerHTML = `Round: ${round}`;
+        console.log('Round', round);
+    }
 }
 
 function randomColorSelector() {
@@ -99,13 +107,13 @@ function randomColorSelector() {
     let selectBtn = buttonArr[Math.floor(Math.random() * buttonArr.length)];
     gameArr.push(selectBtn);
     roundCounter();
-    console.log(gameArr);
+    console.log('Simons Array: ', gameArr);
 }
 
 async function showGameArr() {
     await new Promise(resolve => {
         setTimeout(() => resolve(), 1000);
-        })
+    })
     for (let i = 0; i < gameArr.length; i++) {
         if (gameArr[i] === redBtn) {
             await colorSignalRed();
@@ -118,51 +126,68 @@ async function showGameArr() {
         }
     }
 }
+
 function disableButtons() {
     if (!gameStart) {
-        document.querySelector('.red').disabled = true;
+        redBtn.disabled = true;
         greenBtn.disabled = true;
         blueBtn.disabled = true;
         yellowBtn.disabled = true;
     }
 }
 
+function enableButtons() {
+    if (gameStart) {
+        redBtn.disabled = false;
+        greenBtn.disabled = false;
+        blueBtn.disabled = false;
+        yellowBtn.disabled = false;
+    }
+}
+
 function updatePlayerArr() {
     playerArr.push(this);
-    console.log(playerArr)
+    console.log('Player Array = ', playerArr);
     checkAnswer();
-};
+}
+
+
+function gameOver() {
+    if (round === 10) {
+        console.log('You Win! You beat Simon!')
+        messageBox.innerHTML = 'You beat Simon! Good job! Push start to try again.';
+    } else {
+        console.log('Game Over!')
+        messageBox.innerHTML = 'Game Over! Push start to try again.';
+    }
+    round = 0;
+    gameArr = [];
+    playerArr = [];
+    gameStart = false;
+    disableButtons();
+}
+
 
 function checkAnswer() {
     if (playerArr.length === round) {
         for (let i = 0; i < playerArr.length; i++) {
             if (gameArr[i] === playerArr[i]) {
-                console.log('true');
-            } else if (gameArr[i] !== playerArr[i]) {
-                console.log('Game Over!');
-                gameStart = false;
-                playerArr.length = 0;
-                gameArr.length = 0;
-                round = 0;
-                messageBox.innerHTML = ' ';
-                //disableButtons();
+                console.log('Matched');
+                handleStartRound();
+            } else {
+                if (gameArr[i] !== playerArr[i]) {
+                    gameOver();
+                }
             }
         }
         playerArr = [];
-        computerTurn = true;
-        //disableButtons();
-        randomColorSelector();
-        showGameArr();
-    } else {
-        setTimeout(console.log('waiting for user'), 500);
     }
 }
 
-console.log(playerArr.length);
-console.log(round);
 
-//round counter - wait until array matches number of round
-//create a function to count longest streak of colors gotten correct by user
+
+
+
 
 
 
