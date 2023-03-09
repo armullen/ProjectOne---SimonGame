@@ -85,10 +85,13 @@ function handleStartClick() {
     showGameArr();
     gameStart = true;
     computerTurn = true;
+    //round = 0;
+
 }
 
 function roundCounter(){
     round++;
+    messageBox.innerHTML = `Round: ${round}`;
     console.log(round);
 }
 
@@ -113,6 +116,12 @@ async function showGameArr() {
         }
     }
 }
+function disableButtons(){
+    redBtn.disable = true;
+    greenBtn.disable = true;
+    blueBtn.disable = true;
+    yellowBtn.disable = true;
+}
 
 function updatePlayerArr(){
     playerArr.push(this);
@@ -127,13 +136,17 @@ function updatePlayerArr(){
                 console.log('true');
                 playerArr.length = 0;
                 playerTurn = false;
+                disableButtons();
                 randomColorSelector();
-                setTimeout(showGameArr(), 2000);
-            } else {
+                showGameArr();
+            }else if (gameArr[i] !== playerArr[i]){
                 console.log('Game Over!');
                 gameStart = false;
                 playerArr.length = 0;
                 gameArr.length = 0;
+                round = 0;
+                messageBox.innerHTML = ' ';
+                disableButtons();
         }
     }
         }else{
@@ -142,6 +155,7 @@ function updatePlayerArr(){
 
 console.log(playerArr.length);
 console.log(round);
+
 //round counter - wait until array matches number of round
 //create a function to count longest streak of colors gotten correct by user
 
