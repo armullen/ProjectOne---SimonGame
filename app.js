@@ -176,12 +176,3 @@ function checkAnswer() {
         playerArr = [];
         disableButtons();
     }
-    
-
-
-
-
-
-
-
-
